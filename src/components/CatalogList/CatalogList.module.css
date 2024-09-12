@@ -1,0 +1,9 @@
+.camperBox {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style: none;
+  border-radius: 20px;
+  background: var(--White, #FFF);
+}

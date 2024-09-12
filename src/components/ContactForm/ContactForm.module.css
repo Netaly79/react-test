@@ -1,0 +1,43 @@
+.contactForm {
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.formGroup {
+  width: 100%;
+  display: block;
+}
+
+.contactForm label {
+  font-size: 18px;
+  display: block;
+  text-align: left;
+}
+
+.input {
+  padding: 5px;
+  margin-bottom: 24px;
+  width: 95%;
+}
+
+.errorMessage {
+  margin-top: -24px;
+  color: red;
+  text-align: left;
+}
+
+.submit {
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: lightgray;
+}

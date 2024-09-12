@@ -1,0 +1,30 @@
+.link {
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  padding-left: 32px;
+  color: var(--Main, #101828);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--Button-Hover, #D84343);
+}
+
+.active {
+  color: var(--Button-Hover, #D84343);
+}
+
+.header {
+  padding: 24px 64px;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--Badges, #F2F4F7);
+  background: var(--Inputs, #F7F7F7);
+  margin-bottom: 48px;
+}
+.logo {
+  padding-right: 450px;
+}

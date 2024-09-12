@@ -1,0 +1,158 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  border-radius: 20px;
+  border: 1px solid var(--Gray-light, #dadde1);
+  background: var(--White, #fff);
+  width: 100%;
+  padding: 24px;
+}
+
+.contactInfo > p {
+  text-align: start;
+}
+
+.button {
+  padding: 5px 10px;
+  margin: auto 0;
+}
+
+.imageWrapper {
+  width: 292px;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: lightgray;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.image {
+  top: -4.801px;
+  left: -57.393px;
+  width: 400px;
+  height: 103.001%;
+  object-fit: cover;
+  object-position: top left;
+  position: absolute;
+  max-width: 200%;
+}
+
+.heart {
+  width: 24px;
+  height: 24px;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  box-shadow: none;
+  margin-left: 12px;
+}
+
+.info {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--Main, #101828);
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.priceBlock {
+  color: var(--Main, #101828);
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 8px;
+}
+
+.rateBlock {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.rate {
+  color: var(--Main, #101828);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration-line: underline;
+  margin-right: 16px;
+}
+
+.location > img {
+  display: inline-block;
+  margin-right: 3px;
+  height: 16px;
+  margin-bottom: 0;
+}
+
+.location {
+  color: var(--Main, #101828);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.description {
+  display: -webkit-box;
+  width: 525px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  color: var(--Text, #475467);
+  text-overflow: ellipsis;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.specification {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+button {
+  border-radius: 200px;
+  border-color: transparent;
+  background-color: var(--Button, #e44848);
+  color: var(--White, #fff);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.08px;
+  padding: 16px 60px;
+}
+
+.button:hover {
+  border-radius: 200px;
+  background: var(--Button-Hover, #d84343);
+}
+
+.engine {
+  margin-bottom: 24px;
+}

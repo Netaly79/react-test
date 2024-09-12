@@ -1,0 +1,107 @@
+.form {
+  width: 360px;
+  flex-basis: 360px;
+  flex-shrink: 0;
+}
+
+.searhString {
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+}
+
+.container {
+  padding: 0 64px;
+  display: flex;
+  gap: 64px;
+}
+
+.label {
+  display: block;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("../../assets/Map.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  padding: 18px 36px;
+  border-radius: 12px;
+  border-color: transparent;
+  background-color: var(--Inputs, #f7f7f7);
+  width: 100%;
+  color: var(--Main, #101828);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  gap: 8px;
+}
+
+.filterItem,
+.filterItem_type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #dadde1;
+  width: 112px;
+  height: 96px;
+  border-radius: 12px;
+}
+
+.filterItem:hover,
+.filterItem_type:hover,
+.active {
+  border: 1px solid #e44848;
+  border-radius: 12px;
+}
+
+.filterTitle {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dadde1;
+  margin-bottom: 24px;
+}
+
+.filterItem_type:nth-last-child(2) > .filterName {
+  width: 80px;
+  text-align: center;
+}
+
+.button {
+  border-radius: 200px;
+  border-color: transparent;
+  background-color: var(--Button, #e44848);
+  color: var(--White, #fff);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.08px;
+  padding: 16px 60px;
+}
+
+.button:hover {
+  border-radius: 200px;
+  background: var(--Button-Hover, #d84343);
+}
