@@ -8,9 +8,10 @@ import {
   useParams,
   useNavigate,
 } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Feature = lazy(() => import("../../components/Feature/Feature"));
-const Review = lazy(() => import("../../components/Reviews/Reviews"));
+const Reviews = lazy(() => import("../../components/Reviews/Reviews"));
 
 import css from "./CatalogDetailPage.module.css";
 
@@ -21,12 +22,14 @@ const CatalogDetailsPage = () => {
   const camper = useSelector(selectCampersById);
   const navigate = useNavigate();
   const { id } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    if (camper) {
+    if (camper && location.pathname === `/campers/${id}`) {
       navigate(`/campers/${camper.id}/feature`);
     }
-  }, [camper, navigate, id]);
+  }, [camper, navigate, id, location.pathname]);
+
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -82,7 +85,7 @@ const CatalogDetailsPage = () => {
       </div>
       <Routes>
         <Route path="feature" element={<Feature camper={camper} />} />
-        <Route path="review" element={<Review />} />
+        <Route path="review" element={<Reviews camper={camper}/>} />
       </Routes>
     </Suspense>
   );
