@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 const Feature = lazy(() => import("../../components/Feature/Feature"));
 const Reviews = lazy(() => import("../../components/Reviews/Reviews"));
 
-import css from "./CatalogDetailPage.module.css";
+import css from "./CatalogDetailsPage.module.css";
 
 import starImage from "../../assets/star.svg";
 import mapImage from "../../assets/map.svg";

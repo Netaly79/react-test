@@ -12,6 +12,11 @@ const initialState = {
 const campersSlice = createSlice({
   name: "campers",
   initialState,
+  reducers: {
+    clearCampers(state) {
+      state.items = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCampers.pending, (state) => {
@@ -87,4 +92,5 @@ export const selectUniqueLocations = createSelector(
   }
 );
 
+export const { clearCampers } = campersSlice.actions;
 export default campersSlice.reducer;

@@ -107,6 +107,7 @@ margin-right: 44px;
   border-radius: 10px;
   background: var(--Inputs, #F7F7F7);
   margin-bottom: 24px;
+  border-color: transparent;
 }
 
 .centered {

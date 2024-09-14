@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import css from "./CatalogListItem.module.css";
 import { fetchCamperById } from "../../redux/campersOps";
+import { toggleLike, selectLiked } from "../../redux/likedSlice";
+
 
 import heartImage from "../../assets/heart.svg"; // обычное сердце
 import redHeartImage from "../../assets/red-heart.svg"; // красное сердце
@@ -18,7 +19,8 @@ import acImage from "../../assets/ac.png";
 export const CatalogListItem = ({ camper }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [liked, setLiked] = useState(false);
+  const likedCampers = useSelector(selectLiked);
+  const isLiked = likedCampers.includes(camper.id);
 
   const handleGetItemDetail = () => {
     dispatch(fetchCamperById(camper.id));
@@ -26,7 +28,7 @@ export const CatalogListItem = ({ camper }) => {
   };
 
   const handleLikeClick = () => {
-    setLiked(!liked);
+    dispatch(toggleLike(camper.id));
   };
 
   return (
@@ -44,8 +46,8 @@ export const CatalogListItem = ({ camper }) => {
           <div className={css.priceBlock}>
             €{camper.price}.00
             <img
-              src={liked ? redHeartImage : heartImage}
-              alt={liked ? "Liked" : "Not liked"}
+              src={isLiked ? redHeartImage : heartImage}
+              alt={isLiked ? "Liked" : "Not liked"}
               className={css.heart}
               onClick={handleLikeClick}
             />

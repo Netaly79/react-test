@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campersOps";
 import {
@@ -11,9 +11,7 @@ import {
   setSelectedFilters,
   setSelectedType,
   setSelectedLocation,
-  selectSelectedFilters,
-  selectSelectedType,
-  selectSelectedLocation,
+  clearFilters
 } from "../../redux/filtersSlice";
 import { CatalogList } from "../../components/CatalogList/CatalogList";
 
@@ -30,10 +28,9 @@ import alcoveIcon from "../../assets/bi_grid.svg";
 const CatalogPage = () => {
   const dispatch = useDispatch();
 
-  // Получение фильтров и списка кемперов из состояния Redux
-  const selectedFilters = useSelector(selectSelectedFilters);
-  const selectedType = useSelector(selectSelectedType);
-  const selectedLocation = useSelector(selectSelectedLocation);
+  const [filters, setFilters] = useState([]);
+  const [type, setType] = useState("");
+  const [location, setLocation] = useState("");
 
   const campers = useSelector(selectFilteredCampers);
   const locations = useSelector(selectUniqueLocations);
@@ -48,17 +45,33 @@ console.log("Unique locations:", locations);
     dispatch(fetchCampers());
   }, [dispatch]);
 
-  // Обработчики для фильтров
   const handleFilterClick = (filterName) => {
-    dispatch(setSelectedFilters(filterName));
+    if (filters.includes(filterName)) {
+      setFilters(filters.filter((item) => item !== filterName));
+    } else {
+      setFilters([...filters, filterName]);
+    }
   };
 
-  const handleTypeClick = (type) => {
-    dispatch(setSelectedType(type));
+  const handleTypeClick = (typeName) => {
+    if (type === typeName) {
+      setType("");
+    } else {
+      setType(typeName);
+    }
   };
 
   const handleLocationChange = (e) => {
-    dispatch(setSelectedLocation(e.target.value));
+    setLocation(e.target.value);
+  };
+
+  const applyFilters = () => {
+    dispatch(clearFilters());
+    // Передача фильтров в Redux для применения
+    dispatch(setSelectedFilters(filters));
+    dispatch(setSelectedType(type));
+    dispatch(setSelectedLocation(location));
+    dispatch(fetchCampers());
   };
 
   if (loading) return <p>Loading...</p>;
@@ -75,7 +88,7 @@ console.log("Unique locations:", locations);
           id="location-select"
           name="location"
           className={css.select}
-          value={selectedLocation}
+          value={location}
           onChange={handleLocationChange}>
           <option value="">City</option>
           {locations.map((location, index) => (
@@ -90,7 +103,7 @@ console.log("Unique locations:", locations);
         <div className={css.filterContainer}>
           <div
             className={`${css.filterItem} ${
-              selectedFilters.includes("AC") ? css.active : ""
+              filters.includes("AC") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("AC")}>
             <img
@@ -101,7 +114,7 @@ console.log("Unique locations:", locations);
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilters.includes("automatic") ? css.active : ""
+              filters.includes("automatic") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("automatic")}>
             <img
@@ -112,7 +125,7 @@ console.log("Unique locations:", locations);
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilters.includes("kitchen") ? css.active : ""
+              filters.includes("kitchen") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("kitchen")}>
             <img
@@ -123,7 +136,7 @@ console.log("Unique locations:", locations);
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilters.includes("TV") ? css.active : ""
+              filters.includes("TV") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("TV")}>
             <img className={css.filterImage} src={tvIcon} alt="Tv Icon"></img>
@@ -131,7 +144,7 @@ console.log("Unique locations:", locations);
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilters.includes("bathroom") ? css.active : ""
+              filters.includes("bathroom") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("bathroom")}>
             <img
@@ -146,7 +159,7 @@ console.log("Unique locations:", locations);
         <div className={css.filterContainer}>
           <div
             className={`${css.filterItem_type} ${
-              selectedType === "panelTruck" ? css.active : ""
+              type === "panelTruck" ? css.active : ""
             }`}
             onClick={() => handleTypeClick("panelTruck")}>
             <img className={css.filterImage} src={vanIcon} alt="Van Icon"></img>
@@ -154,7 +167,7 @@ console.log("Unique locations:", locations);
           </div>
           <div
             className={`${css.filterItem_type} ${
-              selectedType === "fullyIntegrated" ? css.active : ""
+              type === "fullyIntegrated" ? css.active : ""
             }`}
             onClick={() => handleTypeClick("fullyIntegrated")}>
             <img
@@ -165,7 +178,7 @@ console.log("Unique locations:", locations);
           </div>
           <div
             className={`${css.filterItem_type} ${
-              selectedType === "alcove" ? css.active : ""
+              type === "alcove" ? css.active : ""
             }`}
             onClick={() => handleTypeClick("alcove")}>
             <img
@@ -176,11 +189,10 @@ console.log("Unique locations:", locations);
           </div>
         </div>
 
-        <button type="button" className={css.button}>
+        <button type="button" className={css.button}  onClick={applyFilters}>
           Search
         </button>
       </form>
-
       <CatalogList campers={campers} />
     </div>
   );

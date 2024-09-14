@@ -7,6 +7,7 @@
   background: var(--White, #fff);
   width: 100%;
   padding: 24px;
+  max-height: 340px;
 }
 
 .contactInfo > p {
