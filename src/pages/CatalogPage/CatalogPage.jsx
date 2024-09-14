@@ -1,12 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campersOps";
 import {
-  selectCampers,
+  selectFilteredCampers,
+  selectUniqueLocations,
   selectLoading,
   selectError,
-  selectUniqueLocations,
 } from "../../redux/campersSlice";
+import {
+  setSelectedFilters,
+  setSelectedType,
+  setSelectedLocation,
+  selectSelectedFilters,
+  selectSelectedType,
+  selectSelectedLocation,
+} from "../../redux/filtersSlice";
 import { CatalogList } from "../../components/CatalogList/CatalogList";
 
 import css from "./CatalogPage.module.css";
@@ -21,58 +29,68 @@ import alcoveIcon from "../../assets/bi_grid.svg";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [selectedTypes, setSelectedTypes] = useState([]);
 
+  // Получение фильтров и списка кемперов из состояния Redux
+  const selectedFilters = useSelector(selectSelectedFilters);
+  const selectedType = useSelector(selectSelectedType);
+  const selectedLocation = useSelector(selectSelectedLocation);
+
+  const campers = useSelector(selectFilteredCampers);
+  const locations = useSelector(selectUniqueLocations);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  console.log("Filtered campers:", campers);
+console.log("Unique locations:", locations);
+
+  // Загрузка данных при монтировании компонента
   useEffect(() => {
     dispatch(fetchCampers());
   }, [dispatch]);
 
-  const campers = useSelector(selectCampers);
-  console.log(campers);
+  // Обработчики для фильтров
+  const handleFilterClick = (filterName) => {
+    dispatch(setSelectedFilters(filterName));
+  };
 
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-  const locations = useSelector(selectUniqueLocations);
+  const handleTypeClick = (type) => {
+    dispatch(setSelectedType(type));
+  };
+
+  const handleLocationChange = (e) => {
+    dispatch(setSelectedLocation(e.target.value));
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  const handleFilterClick = (filterName) => {
-    if (selectedFilter != filterName) {
-      setSelectedFilter(filterName);
-    } else {
-      setSelectedFilter(null);
-    }
-  };
 
-  const handleTypeClick = (typeName) => {
-    if (selectedTypes.includes(typeName)) {
-      setSelectedTypes(selectedTypes.filter((type) => type !== typeName));
-    } else {
-      setSelectedTypes([...selectedTypes, typeName]);
-    }
-  };
-  
   return (
     <div className={css.container}>
       <form className={css.form}>
         <label htmlFor="location-select" className={css.label}>
           Location
         </label>
-        <select id="location-select" name="location" className={css.select}>
+        <select
+          id="location-select"
+          name="location"
+          className={css.select}
+          value={selectedLocation}
+          onChange={handleLocationChange}>
+          <option value="">City</option>
           {locations.map((location, index) => (
             <option key={index} value={location}>
               {location}
             </option>
           ))}
         </select>
+        
         <h3 className={css.filter}>Filters</h3>
         <h2 className={css.filterTitle}>Vehicle equipment</h2>
         <div className={css.filterContainer}>
           <div
             className={`${css.filterItem} ${
-              selectedFilter === "AC" ? css.active : ""
+              selectedFilters.includes("AC") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("AC")}>
             <img
@@ -83,9 +101,9 @@ const CatalogPage = () => {
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilter === "Automatic" ? css.active : ""
+              selectedFilters.includes("automatic") ? css.active : ""
             }`}
-            onClick={() => handleFilterClick("Automatic")}>
+            onClick={() => handleFilterClick("automatic")}>
             <img
               className={css.filterImage}
               src={diagramIcon}
@@ -94,9 +112,9 @@ const CatalogPage = () => {
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilter === "Kitchen" ? css.active : ""
+              selectedFilters.includes("kitchen") ? css.active : ""
             }`}
-            onClick={() => handleFilterClick("Kitchen")}>
+            onClick={() => handleFilterClick("kitchen")}>
             <img
               className={css.filterImage}
               src={groupIcon}
@@ -105,7 +123,7 @@ const CatalogPage = () => {
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilter === "TV" ? css.active : ""
+              selectedFilters.includes("TV") ? css.active : ""
             }`}
             onClick={() => handleFilterClick("TV")}>
             <img className={css.filterImage} src={tvIcon} alt="Tv Icon"></img>
@@ -113,9 +131,9 @@ const CatalogPage = () => {
           </div>
           <div
             className={`${css.filterItem} ${
-              selectedFilter === "Bathroom" ? css.active : ""
+              selectedFilters.includes("bathroom") ? css.active : ""
             }`}
-            onClick={() => handleFilterClick("Bathroom")}>
+            onClick={() => handleFilterClick("bathroom")}>
             <img
               className={css.filterImage}
               src={bathIcon}
@@ -123,21 +141,22 @@ const CatalogPage = () => {
             <p className={css.filterName}>Bathroom</p>
           </div>
         </div>
+
         <h2 className={css.filterTitle}>Vehicle type</h2>
         <div className={css.filterContainer}>
           <div
             className={`${css.filterItem_type} ${
-              selectedTypes.includes("Van") ? css.active : ""
+              selectedType === "panelTruck" ? css.active : ""
             }`}
-            onClick={() => handleTypeClick("Van")}>
+            onClick={() => handleTypeClick("panelTruck")}>
             <img className={css.filterImage} src={vanIcon} alt="Van Icon"></img>
             <p className={css.filterName}>Van</p>
           </div>
           <div
             className={`${css.filterItem_type} ${
-              selectedTypes.includes("Fully Integrated") ? css.active : ""
+              selectedType === "fullyIntegrated" ? css.active : ""
             }`}
-            onClick={() => handleTypeClick("Fully Integrated")}>
+            onClick={() => handleTypeClick("fullyIntegrated")}>
             <img
               className={css.filterImage}
               src={fullyIcon}
@@ -146,9 +165,9 @@ const CatalogPage = () => {
           </div>
           <div
             className={`${css.filterItem_type} ${
-              selectedTypes.includes("Alcove") ? css.active : ""
+              selectedType === "alcove" ? css.active : ""
             }`}
-            onClick={() => handleTypeClick("Alcove")}>
+            onClick={() => handleTypeClick("alcove")}>
             <img
               className={css.filterImage}
               src={alcoveIcon}
@@ -156,11 +175,12 @@ const CatalogPage = () => {
             <p className={css.filterName}>Alcove</p>
           </div>
         </div>
-        <button type="submit" className={css.button}>
+
+        <button type="button" className={css.button}>
           Search
         </button>
       </form>
-      {error && <p>{error}</p>}
+
       <CatalogList campers={campers} />
     </div>
   );

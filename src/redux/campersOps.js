@@ -10,6 +10,12 @@ export const fetchCampers = createAsyncThunk(
       const response = await axios.get("/campers");
       return response.data;
     } catch (error) {
+      // Обработка ошибки 429 (Too Many Requests)
+      if (error.response && error.response.status === 429) {
+        return thunkAPI.rejectWithValue("Too many requests. Please try again later.");
+      }
+
+      // Обработка других ошибок
       return thunkAPI.rejectWithValue(error.message);
     }
   }

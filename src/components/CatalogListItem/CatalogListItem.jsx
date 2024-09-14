@@ -20,8 +20,6 @@ export const CatalogListItem = ({ camper }) => {
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
 
-  console.log("Camper item:", camper);
-
   const handleGetItemDetail = () => {
     dispatch(fetchCamperById(camper.id));
     navigate(`/campers/${camper.id}`);
@@ -75,7 +73,7 @@ export const CatalogListItem = ({ camper }) => {
         </div>
         {camper.AC && <img src={acImage} alt="AC" className={css.engine} />}
         <button className={css.button} onClick={handleGetItemDetail}>
-          ShowMore
+          Show More
         </button>
       </div>
     </li>
