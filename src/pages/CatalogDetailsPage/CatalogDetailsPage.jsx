@@ -30,7 +30,6 @@ const CatalogDetailsPage = () => {
     }
   }, [camper, navigate, id, location.pathname]);
 
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className={css.container}>
@@ -85,7 +84,7 @@ const CatalogDetailsPage = () => {
       </div>
       <Routes>
         <Route path="feature" element={<Feature camper={camper} />} />
-        <Route path="review" element={<Reviews camper={camper}/>} />
+        <Route path="review" element={<Reviews camper={camper} />} />
       </Routes>
     </Suspense>
   );

@@ -26,7 +26,7 @@
   line-height: 24px;
   padding-bottom: 24px;
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--Gray-light, #DADDE1);;
+  border-bottom: 1px solid var(--Gray-light, #dadde1);
 }
 
 .row {
@@ -45,50 +45,50 @@
 .formContainer {
   display: flex;
   max-width: 641px;
-  width:50%;
+  width: 50%;
   padding: 44px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 24px;
   border-radius: 10px;
-  border: 1px solid var(--Gray-light, #DADDE1);
+  border: 1px solid var(--Gray-light, #dadde1);
 }
 
 .formTitle {
   color: var(--Main, #101828);
-font-family: Inter;
-font-size: 20px;
-font-style: normal;
-font-weight: 600;
-line-height: 24px;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
 }
 
 .desc {
-  color: var(--Gray, #6C717B);
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
-margin-bottom: 24px;
+  color: var(--Gray, #6c717b);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 24px;
 }
 
 .input {
-padding: 18px;
-width: 100%;
-max-width: 507px;
-border-color: transparent transparent transparent;
-border-radius: 12px;
-background: var(--Inputs, #F7F7F7);
-color: var(--Gray, #6C717B);
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
-margin-bottom: 14px;
-margin-right: 44px;
+  padding: 18px;
+  width: 100%;
+  max-width: 507px;
+  border-color: transparent transparent transparent;
+  border-radius: 12px;
+  background: var(--Inputs, #f7f7f7);
+  color: var(--Gray, #6c717b);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 14px;
+  margin-right: 44px;
 }
 
 .textBlock {
@@ -100,9 +100,9 @@ margin-right: 44px;
   align-items: flex-start;
   gap: 10px;
   border-radius: 10px;
-  background: var(--Inputs, #F7F7F7);
+  background: var(--Inputs, #f7f7f7);
   margin-bottom: 24px;
-  border-color: transparent
+  border-color: transparent;
 }
 
 .centered {
@@ -121,7 +121,7 @@ span:not(:last-child)::after {
 }
 
 .badge {
-  color: var(--Button, #E44848);
+  color: var(--Button, #e44848);
   font-family: Inter;
   font-size: 24px;
   font-style: normal;
@@ -130,7 +130,7 @@ span:not(:last-child)::after {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--Badges, #F2F4F7);
+  background: var(--Badges, #f2f4f7);
   display: flex;
   justify-content: center;
   align-items: center;

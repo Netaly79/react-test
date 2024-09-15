@@ -10,7 +10,6 @@ export const loadLikedCampersFromLocalStorage = () => {
   }
 };
 
-// Function to save liked campers to localStorage
 export const saveLikedCampersToLocalStorage = (state) => {
   try {
     const serializedState = JSON.stringify(state);
@@ -24,7 +23,6 @@ const initialState = {
   liked: loadLikedCampersFromLocalStorage(),
 };
 
-
 const likedSlice = createSlice({
   name: "liked",
   initialState,
@@ -32,7 +30,7 @@ const likedSlice = createSlice({
     toggleLike(state, action) {
       const camperId = action.payload;
       if (state.liked.includes(camperId)) {
-        state.liked = state.liked.filter(id => id !== camperId);
+        state.liked = state.liked.filter((id) => id !== camperId);
       } else {
         state.liked.push(camperId);
       }

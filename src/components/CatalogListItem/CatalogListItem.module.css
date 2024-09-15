@@ -132,7 +132,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 }
 
 button {
@@ -152,8 +152,4 @@ button {
 .button:hover {
   border-radius: 200px;
   background: var(--Button-Hover, #d84343);
-}
-
-.engine {
-  margin-bottom: 24px;
 }

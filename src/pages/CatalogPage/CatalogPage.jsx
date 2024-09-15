@@ -11,7 +11,7 @@ import {
   setSelectedFilters,
   setSelectedType,
   setSelectedLocation,
-  clearFilters
+  clearFilters,
 } from "../../redux/filtersSlice";
 import { CatalogList } from "../../components/CatalogList/CatalogList";
 
@@ -31,19 +31,21 @@ const CatalogPage = () => {
   const [filters, setFilters] = useState([]);
   const [type, setType] = useState("");
   const [location, setLocation] = useState("");
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const campers = useSelector(selectFilteredCampers);
   const locations = useSelector(selectUniqueLocations);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const itemsPerPage = 4;
 
-  console.log("Filtered campers:", campers);
-console.log("Unique locations:", locations);
-
-  // Загрузка данных при монтировании компонента
   useEffect(() => {
     dispatch(fetchCampers());
   }, [dispatch]);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + itemsPerPage);
+  };
 
   const handleFilterClick = (filterName) => {
     if (filters.includes(filterName)) {
@@ -67,16 +69,21 @@ console.log("Unique locations:", locations);
 
   const applyFilters = () => {
     dispatch(clearFilters());
-    // Передача фильтров в Redux для применения
     dispatch(setSelectedFilters(filters));
     dispatch(setSelectedType(type));
     dispatch(setSelectedLocation(location));
     dispatch(fetchCampers());
   };
 
+  const hasMoreItems = campers.items.length > visibleCount;
+  const items = campers.items;
+  const visibleCampers = {
+    total: visibleCount,
+    items: items.slice(0, visibleCount),
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-
 
   return (
     <div className={css.container}>
@@ -97,7 +104,7 @@ console.log("Unique locations:", locations);
             </option>
           ))}
         </select>
-        
+
         <h3 className={css.filter}>Filters</h3>
         <h2 className={css.filterTitle}>Vehicle equipment</h2>
         <div className={css.filterContainer}>
@@ -189,11 +196,21 @@ console.log("Unique locations:", locations);
           </div>
         </div>
 
-        <button type="button" className={css.button}  onClick={applyFilters}>
+        <button type="button" className={css.button} onClick={applyFilters}>
           Search
         </button>
       </form>
-      <CatalogList campers={campers} />
+
+      <div>
+        <CatalogList campers={visibleCampers} />
+
+        {loading && <p>Loading...</p>}
+        {hasMoreItems && !loading && (
+          <button className={css.buttonMore} onClick={handleLoadMore}>
+            Load More
+          </button>
+        )}
+      </div>
     </div>
   );
 };

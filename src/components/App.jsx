@@ -6,7 +6,7 @@ import css from "./App.module.css";
 const Navigation = lazy(() => import("../components/Navigation/Navigation"));
 const CatalogPage = lazy(() => import("../pages/CatalogPage/CatalogPage"));
 const CatalogDetailsPage = lazy(() =>
-  import("../pages/CatalogDetailsPage/CatalogDetailsPages")
+  import("../pages/CatalogDetailsPage/CatalogDetailsPage")
 );
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));

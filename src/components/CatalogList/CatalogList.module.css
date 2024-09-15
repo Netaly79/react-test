@@ -6,4 +6,5 @@
   list-style: none;
   border-radius: 20px;
   background: var(--White, #FFF);
+  margin-bottom: 60px;
 }

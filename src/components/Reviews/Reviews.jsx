@@ -2,35 +2,7 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import css from "./Reviews.module.css";
-
-import automaticImage from "../../assets/automatic.png";
-import petrolImage from "../../assets/petrol.png";
-import kitchenImage from "../../assets/kitchen.png";
-import radioImage from "../../assets/radio.png";
-import bathImage from "../../assets/bathroom.png";
-import acImage from "../../assets/ac.png";
-
-import yellowStar from "../../assets/star.svg";
-import grayStar from "../../assets/grey-star.svg";
-
-const StarRating = ({ rating }) => {
-  const maxStars = 5;
-  const fullStars = Math.floor(rating);
-  const emptyStars = maxStars - fullStars;
-
-  const starsArray = [
-    ...Array(fullStars).fill(yellowStar),
-    ...Array(emptyStars).fill(grayStar),
-  ];
-
-  return (
-    <div>
-      {starsArray.map((star, index) => (
-        <img key={index} src={star} alt="star" />
-      ))}
-    </div>
-  );
-};
+import { StarRating } from "../StarRating/StarRating";
 
 const Reviews = ({ camper }) => {
   const [formData, setFormData] = useState({
@@ -52,7 +24,6 @@ const Reviews = ({ camper }) => {
     toast.success("Form submitted successfully!", {
       position: "top-right",
     });
-    console.log("Form data:", formData);
   };
 
   return (
@@ -70,7 +41,7 @@ const Reviews = ({ camper }) => {
                   <StarRating rating={review.reviewer_rating} />
                 </div>
               </div>
-                <p className={css.reviewText}>{review.comment}</p>
+              <p className={css.reviewText}>{review.comment}</p>
             </div>
           ))}
       </div>

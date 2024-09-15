@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import css from "./CatalogListItem.module.css";
 import { fetchCamperById } from "../../redux/campersOps";
 import { toggleLike, selectLiked } from "../../redux/likedSlice";
 
-
-import heartImage from "../../assets/heart.svg"; // обычное сердце
-import redHeartImage from "../../assets/red-heart.svg"; // красное сердце
+import css from "./CatalogListItem.module.css";
+import heartImage from "../../assets/heart.svg";
+import redHeartImage from "../../assets/red-heart.svg";
 import starImage from "../../assets/star.svg";
 import mapImage from "../../assets/map.svg";
 import automaticImage from "../../assets/automatic.png";
@@ -72,8 +71,8 @@ export const CatalogListItem = ({ camper }) => {
           {camper.kitchen && <img src={kitchenImage} alt="Kitchen" />}
           {camper.radio && <img src={radioImage} alt="Radio" />}
           {camper.bathroom && <img src={bathImage} alt="Bathroom" />}
+          {camper.AC && <img src={acImage} alt="AC" className={css.engine} />}
         </div>
-        {camper.AC && <img src={acImage} alt="AC" className={css.engine} />}
         <button className={css.button} onClick={handleGetItemDetail}>
           Show More
         </button>
