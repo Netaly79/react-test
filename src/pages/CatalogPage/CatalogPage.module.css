@@ -14,7 +14,7 @@
 }
 
 .container {
-  padding: 0 64px;
+  padding: 48px 64px;
   display: flex;
   gap: 64px;
 }
@@ -33,7 +33,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("../../assets/Map.svg");
+  background-image: url("../../assets/mapka.svg");
   background-repeat: no-repeat;
   background-position: left 10px center;
   padding: 18px 36px;

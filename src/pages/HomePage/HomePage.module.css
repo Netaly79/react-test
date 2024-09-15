@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(../../assets/hero.png) no-repeat;
+  background: url(/hero.png) no-repeat;
 }
 
 .title {

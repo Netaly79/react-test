@@ -7,7 +7,7 @@ import css from "./CatalogListItem.module.css";
 import heartImage from "../../assets/heart.svg";
 import redHeartImage from "../../assets/red-heart.svg";
 import starImage from "../../assets/star.svg";
-import mapImage from "../../assets/map.svg";
+import mapImage from "../../assets/mapka.svg";
 import automaticImage from "../../assets/automatic.png";
 import petrolImage from "../../assets/petrol.png";
 import kitchenImage from "../../assets/kitchen.png";

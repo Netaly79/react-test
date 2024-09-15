@@ -23,7 +23,6 @@
   justify-content: flex-start;
   border-bottom: 1px solid var(--Badges, #F2F4F7);
   background: var(--Inputs, #F7F7F7);
-  margin-bottom: 48px;
 }
 .logo {
   padding-right: 450px;

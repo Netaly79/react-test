@@ -17,13 +17,14 @@ import { CatalogList } from "../../components/CatalogList/CatalogList";
 
 import css from "./CatalogPage.module.css";
 import windIcon from "../../assets/wind.svg";
-import diagramIcon from "../../assets/diagram.svg";
+import diagramImage from "../../assets/diagram.svg";
 import groupIcon from "../../assets/group.svg";
 import tvIcon from "../../assets/tv.svg";
 import bathIcon from "../../assets/bath.svg";
 import vanIcon from "../../assets/bi_grid-1x2.svg";
 import fullyIcon from "../../assets/bi_grid-3x3-gap.svg";
 import alcoveIcon from "../../assets/bi_grid.svg";
+
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -126,7 +127,7 @@ const CatalogPage = () => {
             onClick={() => handleFilterClick("automatic")}>
             <img
               className={css.filterImage}
-              src={diagramIcon}
+              src={diagramImage}
               alt="Diagram Icon"></img>
             <p className={css.filterName}>Automatic</p>
           </div>

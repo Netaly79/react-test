@@ -16,7 +16,7 @@ const Reviews = lazy(() => import("../../components/Reviews/Reviews"));
 import css from "./CatalogDetailsPage.module.css";
 
 import starImage from "../../assets/star.svg";
-import mapImage from "../../assets/map.svg";
+import mapImage from "../../assets/mapka.svg";
 
 const CatalogDetailsPage = () => {
   const camper = useSelector(selectCampersById);
